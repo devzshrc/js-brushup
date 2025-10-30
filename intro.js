@@ -90,8 +90,12 @@ let lastName = 'yadav';
 // let fullName = firstName + lastName; //devashishyadav
 
 let fullName = firstName + ' ' + lastName; //devashish yadav
-let message = 'hwllo worldslfs';
+let message = 'Hello World';
 console.log(message.length);
 console.log(message.toUpperCase());
 console.log(message.toLowerCase());
+//coupon codes are usually in uppercase -> we perform these operation in real life applications where maybe user enters the coupon code in lowercase
+console.log(message.indexOf('W')); //it gives us index of substring
+console.log(message.slice(0, 5)); // from position 0 to position 5
 
+//Template literals -> `${varName}`
