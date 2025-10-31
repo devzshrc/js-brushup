@@ -76,3 +76,79 @@ So even though reduce is often used for summing numbers, the core idea is:
 it reduces an array to a single value by repeatedly applying a function that merges two elements into one.
  * 
  * / */
+
+let expenses = [
+  { description: 'groceries', amount: 50, category: 'food' },
+  { description: 'noodels', amount: 70, category: 'food' },
+  { description: 'uber ride', amount: 18, category: 'transport' },
+  { description: 'movie tickets', amount: 24, category: 'entertainment' },
+  { description: 'electricity bill', amount: 92, category: 'utilities' },
+];
+
+//datatype of accumulator: whateven u put in
+// make expense report
+let expenseReport = expenses.reduce(
+  (report, expense) => {
+    if (!report[expense.category]) {
+      report[expense.category] = 0; // handle missing categories
+    }
+    report[expense.category] += expense.amount;
+    return report; // must return accumulator
+  },
+  { food: 0, utilities: 0 },
+);
+
+console.log('expense report:', expenseReport);
+
+// 1. **`reduce()` builds one final result**
+//    It loops through every element in the array and keeps track of a single “accumulator” (in this case, `report`). Whatever you return at the end of each iteration becomes the accumulator for the next round.
+
+// 2. **Your accumulator starts as `{ food: 0, utilities: 0 }`**
+//    That’s the initial value you provided. It already has two categories, but others (like `transport` or `entertainment`) don’t exist yet, so you have to handle them dynamically.
+
+// 3. **You must return the accumulator every time**
+//    Inside the reducer, you must `return report;` at the end of each iteration.
+//    If you don’t, the accumulator becomes `undefined` on the next loop, breaking the process.
+
+// 4. **You initialize missing categories**
+//    The line
+
+//    ```js
+//    if (!report[expense.category]) {
+//      report[expense.category] = 0;
+//    }
+//    ```
+
+//    checks if the category already exists in the accumulator.
+//    If not, it creates it with a default value of `0`.
+//    This prevents errors like trying to add to `undefined`.
+
+// 5. **You add each expense’s amount to its category**
+
+//    ```js
+//    report[expense.category] += expense.amount;
+//    ```
+
+//    That line updates the total spending for each category.
+
+// 6. **Final `expenseReport` object holds totals per category**
+//    After `reduce()` finishes, you end up with something like:
+
+//    ```js
+//    {
+//      food: 120,
+//      utilities: 92,
+//      transport: 18,
+//      entertainment: 24
+//    }
+//    ```
+
+//    This is your summarized expense report.
+
+// 7. **Why this approach is powerful**
+
+//    * Works dynamically — no need to know all categories in advance.
+//    * Runs in a single pass over the array.
+//    * Scales well if you add hundreds of categories or thousands of records.
+
+// Essentially, `reduce()` here is being used as a smart “group and sum” function — one of the most common real-world use cases beyond just adding numbers.
