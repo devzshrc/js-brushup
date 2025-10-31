@@ -53,3 +53,34 @@ let chaiRecipe = {
 console.log(chaiRecipe.name);
 console.log(chaiRecipe.ingredients.spices[1]);
 
+let updatedChaiRecepie = {
+  ...chaiRecipe,
+  instruction: 'Boil water, add tea leaves, milk, sugar, spices with some love',
+};
+console.log(updatedChaiRecepie);
+// The ...chaiRecipe copies all properties from the original object.
+
+// Then, instruction: overwrites that specific property with a new value.
+
+// Result: you get a new object, not a mutation of the original.
+
+// Logs a new object with everything same as chaiRecipe except the updated instruction.
+
+// ...chaiRecipe spreads all key–value pairs from chaiRecipe into a new object, letting you copy and modify it without changing the original..
+let { name, ingredients } = chaiRecipe; //object destructuring
+// Extracts properties name and ingredients from the object chaiRecipe.
+// Creates two new variables:
+// name → value of chaiRecipe.name
+// ingredients → value of chaiRecipe.ingredients
+
+let [firstChai, secondChai] = chaiTypes; //array destructuring
+// Extracts the first and second elements from the array chaiTypes.
+// Creates:
+// firstChai → chaiTypes[0]
+// secondChai → chaiTypes[1]
+let [value, setValue] = useState();
+//This is array destructuring applied to the return value of React’s useState() hook.
+// It returns an array with two elements:
+// The current state value
+// A function to update that state
+//data kya hai, operation kya karna hai
